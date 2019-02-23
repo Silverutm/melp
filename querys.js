@@ -102,7 +102,7 @@ const getStatistics = (request, response) => {
             avg:0,
             std:0
         }
-        response.status(200).send(`${ans.count}  hola`);
+        //response.status(200).send(`${ans.count}  hola`);
         let rating = 0;
         for (restaurant in results.rows)
         {
@@ -121,8 +121,8 @@ const getStatistics = (request, response) => {
             }
         }
         ans.std = Mat.sqrt(ans.std / count);
-
-        response.status(200).send(`${ans.count}  hola`);
+        response.status(200).json(results)
+        //response.status(200).send(`${ans.count}  hola`);
     })
 }
 
