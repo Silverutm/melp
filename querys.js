@@ -117,25 +117,26 @@ const getStatistics = (request, response) => {
             restaurant = results.rows[i]
             //ans.v = restaurant.lat
             
-            if ( distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), parseFloat(latitude), parseFloat(longitude)) <= parseFloat(radius) )
+            if ( distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), latitude, longitude) <= radius )
             {
                 ans.count = ans.count + 1;
                 rating = rating  + restaurant.rating;
             }
-            else ans.i = ans.i + ' ***--- ' + distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), parseFloat(latitude), parseFloat(longitude)) + '   ' + radius
+            //else ans.i = ans.i + ' ***--- ' + distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), parseFloat(latitude), parseFloat(longitude)) + '   ' + radius
         }
         ans.avg = rating / ans.count;
         for (i in results.rows)
         {
             restaurant = results.rows[i]
-            if ( distanceInMBetweenEarthCoordinates( parseFloat(restaurant.lat), parseFloat(restaurant.lng), parseFloat(latitude), parseFloat(longitude)) <= parseFloat(radius) )
+            if ( distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), latitude, longitude) <= radius )
             {
                 ans.std = (ans.avg - restaurant.rating) * (ans.avg - restaurant.rating);
             }
         }
         ans.std = Math.sqrt(ans.std / ans.count);
         //response.status(200).json(results)
-        response.status(200).send(`${ans.count}  hola -- ${ans.i} --  ${ans.v}`);
+        response.status(200).send(ans)
+        //response.status(200).send(`${ans.count}  hola -- ${ans.i} --  ${ans.v}`);
     })
 }
 
