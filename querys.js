@@ -47,7 +47,7 @@ const updateRestaurant = (request, response) => {
     const intRating = parseInt(rating)
     const floatLat = parseFloat(lat)
     const floatLng = parseFloat(lng)
-  
+    response.status(200).send(`R ${name} ----  ${street}`)
     pool.query(
         'UPDATE Restaurants SET rating = $2, name = $3, site = $4, email = $5, phone = $6, street = $7, city = $8, state = $9, lat = $10, lng = $11 WHERE id = $1',
         [id, intRating, name, site, email, phone, street, city, state, floatLat, floatLng],
