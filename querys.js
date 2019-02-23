@@ -32,7 +32,7 @@ const createRestaurant = (request, response) => {
     const floatLat = parseFloat(lat)
     const floatLng = parseFloat(lng)
   
-    pool.query('INSERT INTO Restaurants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [id, intRating, name, site, email, phone, street, city, state, floatLat, floatLng], (error, results) => {
+    pool.query('INSERT INTO Restaurants (id, rating, name, site, email, phone, street, city, state, lat, lng) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [id, intRating, name, site, email, phone, street, city, state, floatLat, floatLng], (error, results) => {
         if (error) {
             throw error
         }
