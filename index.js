@@ -1,11 +1,17 @@
-const bodyParser = require('body-parser')
 const express = require('express')
+const bodyParser = require('body-parser')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
 const db = require('./querys')
 
 express()
+  .use(bodyParser.json())
+  .use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  )
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
