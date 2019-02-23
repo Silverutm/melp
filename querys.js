@@ -97,11 +97,11 @@ const getStatistics = (request, response) => {
         if (error) {
             throw error
         }
-        let ans = {
+        /*let ans = {
             count:0,
             avg:0,
             std:0
-        }
+        }*/
         response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
         /*let rating = 0;
