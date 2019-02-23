@@ -40,7 +40,6 @@ const createRestaurant = (request, response) => {
     })
 }
 
-
 const updateRestaurant = (request, response) => {
     const id = request.params.id
     const { rating, name, site, email, phone, street, city, state, lat, lng } = request.body
