@@ -1,6 +1,6 @@
 //const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+//const path = require('path')
+//const PORT = process.env.PORT || 5000
 
 /*express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 5000
 
 const http = require('http');
 
-//const hostname = '127.0.0.1';
-//const port = 3000;
+const hostname = '127.0.0.1';
+const port = process.env.PORT || 5000
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
