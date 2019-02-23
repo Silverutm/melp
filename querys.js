@@ -115,7 +115,7 @@ const getStatistics = (request, response) => {
             }
         }
         ans.avg = rating / count;
-        for (restaurant in results.rows)
+        for (i in results.rows)
         {
             restaurant = results.rows[i]
             if ( distanceInMBetweenEarthCoordinates(restaurant.lat, restaurant.lng, latitude, longitude) <= radius )
