@@ -1,28 +1,14 @@
-const { spawn } = require('child_process');
-const request = require('request');
-const test = require('tape');
+const http = require('http');
 
-// Start the app
-const env = Object.assign({}, process.env, {PORT: 5000});
-const child = spawn('node', ['index.js'], {env});
+const hostname = '127.0.0.1';
+const port = 3000;
 
-test('responds to requests', (t) => {
-  t.plan(4);
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
 
-  // Wait until the server is ready
-  child.stdout.on('data', _ => {
-    // Make a request to our app
-    request('http://127.0.0.1:5000', (error, response, body) => {
-      // stop the server
-      child.kill();
-
-      // No error
-      t.false(error);
-      // Successful response
-      t.equal(response.statusCode, 200);
-      // Assert content checks
-      t.notEqual(body.indexOf("<title>Node.js Getting Started on Heroku</title>"), -1);
-      t.notEqual(body.indexOf("Getting Started with Node on Heroku"), -1);
-    });
-  });
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
