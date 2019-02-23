@@ -121,7 +121,7 @@ const getStatistics = (request, response) => {
         }
         ans.std = Mat.sqrt(ans.std / count);
 
-        response.status(200).json(ans)
+        response.status(200).send(ans)
     })
 }
 
