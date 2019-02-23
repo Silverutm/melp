@@ -92,7 +92,10 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 }
 
 const getStatistics = (request, response) => {
-    const { latitude, longitude, radius } = request.body
+    //const { latitude, longitude, radius } = request.body
+    const latitude = parseFloat(request.query.latitude)
+    const longitude = parseFloat(request.query.longitude)
+    const radius = parseFloat(request.query.radius)
     pool.query('SELECT * FROM Restaurants', (error, results) => {
         if (error) {
             throw error
@@ -101,8 +104,8 @@ const getStatistics = (request, response) => {
             count:0,
             avg:0,
             std:0,
-            i:0,
-            v:0
+            //i:0,
+            //v:0
         }
         //response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
