@@ -36,7 +36,7 @@ const createRestaurant = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`Restaurant added with ID: ${id}`)
+        response.status(200).send(`Restaurant added with ID: ${id}`)
     })
 }
 
@@ -92,7 +92,6 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 }
 
 const getStatistics = (request, response) => {
-    //const { latitude, longitude, radius } = request.body
     const latitude = parseFloat(request.query.latitude)
     const longitude = parseFloat(request.query.longitude)
     const radius = parseFloat(request.query.radius)
@@ -104,25 +103,18 @@ const getStatistics = (request, response) => {
             count:0,
             avg:0,
             std:0,
-            //i:0,
-            //v:0
         }
-        //response.status(200).json(results.rows)
-        //response.status(200).send(`${ans.count}  hola`);
+    
         let rating = 0;
         for (i in results.rows)
         {
-            //ans.i = i
-            
             restaurant = results.rows[i]
-            //ans.v = restaurant.lat
             
             if ( distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), latitude, longitude) <= radius )
             {
                 ans.count = ans.count + 1;
                 rating = rating  + restaurant.rating;
             }
-            //else ans.i = ans.i + ' ***--- ' + distanceInMBetweenEarthCoordinates(parseFloat(restaurant.lat), parseFloat(restaurant.lng), parseFloat(latitude), parseFloat(longitude)) + '   ' + radius
         }
         ans.avg = rating / ans.count;
         for (i in results.rows)
@@ -134,9 +126,7 @@ const getStatistics = (request, response) => {
             }
         }
         ans.std = Math.sqrt(ans.std / ans.count);
-        //response.status(200).json(results)
         response.status(200).send(ans)
-        //response.status(200).send(`${ans.count}  hola -- ${ans.i} --  ${ans.v}`);
     })
 }
 
