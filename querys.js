@@ -72,7 +72,7 @@ const deleteRestaurant = (request, response) => {
     })
 }
 
-/*function degreesToRadians(degrees) {
+function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
 }
   
@@ -89,22 +89,22 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
             Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     return earthRadiusKm * c * 1000;
-}*/
+}
 
 const getStatistics = (request, response) => {
-    //const { latitude, longitude, radius } = request.body
+    const { latitude, longitude, radius } = request.body
     pool.query('SELECT * FROM Restaurants', (error, results) => {
         if (error) {
             throw error
         }
-        /*let ans = {
+        let ans = {
             count:0,
             avg:0,
             std:0
-        }*/
-        response.status(200).json(results.rows)
+        }
+        //response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
-        /*let rating = 0;
+        let rating = 0;
         for (restaurant in results.rows)
         {
             if ( distanceInMBetweenEarthCoordinates(restaurant.lat, restaurant.lng, latitude, longitude) <= radius )
@@ -122,8 +122,8 @@ const getStatistics = (request, response) => {
             }
         }
         ans.std = Mat.sqrt(ans.std / count);
-        response.status(200).json(results)*/
-        //response.status(200).send(`${ans.count}  hola`);
+        //response.status(200).json(results)
+        response.status(200).send(`${ans.count}  hola`);
     })
 }
 
