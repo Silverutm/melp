@@ -36,7 +36,7 @@ const createRestaurant = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`Restaurant added with ID: ${result.insertId}`)
+        response.status(201).send(`Restaurant added with ID: ${id}`)
     })
 }
 
