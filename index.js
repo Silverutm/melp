@@ -20,7 +20,7 @@ express()
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
-      const result = await client.query('SELECT * FROM test_table');
+      const result = await client.query('SELECT * FROM otra');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
       client.release();
@@ -61,3 +61,13 @@ server.listen(port, hostname, () => {
 
 
 */
+
+
+/*Restaurants(
+id TEXT PRIMARY KEY, rating INTEGER, name TEXT, site TEXT, email TEXT, phone TEXT, street TEXT, city TEXT, state TEXT, lat FLOAT, lng FLOAT)*/
+
+
+
+//create table otra (id TEXT PRIMARY KEY, name text);
+//insert into otra values('23', '323');
+//insert into otra values('hola', '323');
