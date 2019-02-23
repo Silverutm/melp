@@ -107,18 +107,18 @@ const getStatistics = (request, response) => {
         let rating = 0;
         for (i in results.rows)
         {
-            console.log(i)
+            //console.log(i)
             
             restaurant = results.rows[i]
 
-            console.log(restaurant)
+            //console.log(restaurant)
             if ( distanceInMBetweenEarthCoordinates(restaurant.lat, restaurant.lng, latitude, longitude) <= radius )
             {
                 ans.count = ans.count + 1;
                 rating = rating  + restaurant.rating;
             }
         }
-        ans.avg = rating / count;
+        ans.avg = rating / ans.count;
         for (i in results.rows)
         {
             restaurant = results.rows[i]
