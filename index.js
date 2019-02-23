@@ -18,10 +18,10 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .get('/restaurants', db.getRestaurants )
   .get('/restaurants/:id', db.getRestaurantById )
+  .get('/restaurants/statistics', db.getStatistics )
   .post('/restaurants', db.createRestaurant)
   .put('/restaurants/:id', db.updateRestaurant)
-  .delete('/restaurants/:id', db.deleteRestaurant)
-  .get('/restaurants/statistics', db.getStatistics )
+  .delete('/restaurants/:id', db.deleteRestaurant)  
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 /*create table Restaurants(id TEXT PRIMARY KEY, rating INTEGER, name TEXT, site TEXT, email TEXT, phone TEXT, street TEXT, city TEXT, state TEXT, lat FLOAT, lng FLOAT);*/
