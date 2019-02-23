@@ -3,13 +3,9 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 
 
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
 
 
+const db = require('./queries')
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -17,6 +13,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/times', (req, res) => res.send(showTimes()))
+  .get('/restaurants', db.getRestaurants )
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -29,7 +26,6 @@ express()
       res.send("Error " + err);
     }
   })
-  .get('/restaurants', async (req, res) => res.send(getRestaurants()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
@@ -44,14 +40,6 @@ showTimes = () => {
     return result;
 }
 
-const getRestaurants = (request, response) => {
-    pool.query('SELECT * FROM Restaurants', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-  }
 
 
 /*create table Restaurants(id TEXT PRIMARY KEY, rating INTEGER, name TEXT, site TEXT, email TEXT, phone TEXT, street TEXT, city TEXT, state TEXT, lat FLOAT, lng FLOAT)*/
