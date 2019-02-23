@@ -100,18 +100,20 @@ const getStatistics = (request, response) => {
         let ans = {
             count:0,
             avg:0,
-            std:0
+            std:0,
+            i:0,
+            v:0
         }
         //response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
         let rating = 0;
         for (i in results.rows)
         {
-            console.log(i)
+            ans.i = i
             
             restaurant = results.rows[i]
-
-            console.log(restaurant)
+            ans.v = restaurant.lat
+            
             if ( distanceInMBetweenEarthCoordinates(restaurant.lat, restaurant.lng, parseFloat(latitude), parseFloat(longitude)) <= parseFloat(radius) )
             {
                 ans.count = ans.count + 1;
@@ -129,7 +131,7 @@ const getStatistics = (request, response) => {
         }
         ans.std = Math.sqrt(ans.std / ans.count);
         //response.status(200).json(results)
-        response.status(200).send(`${ans.count}  hola`);
+        response.status(200).send(`${ans.count}  hola -- ${ans.i} --  ${ans.v}`);
     })
 }
 
