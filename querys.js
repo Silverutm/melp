@@ -16,7 +16,7 @@ const getRestaurants = (request, response) => {
 
 
 const getRestaurantsById = (request, response) => {
-    const id = parseInt(request.params.id)
+    const id = request.params.id
   
     pool.query('SELECT * FROM Restaurants WHERE id = $1', [id], (error, results) => {
         if (error) {
