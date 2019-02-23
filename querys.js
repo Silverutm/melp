@@ -104,7 +104,7 @@ const getStatistics = (request, response) => {
         }
         response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
-        let rating = 0;
+        /*let rating = 0;
         for (restaurant in results.rows)
         {
             if ( distanceInMBetweenEarthCoordinates(restaurant.lat, restaurant.lng, latitude, longitude) <= radius )
@@ -122,7 +122,7 @@ const getStatistics = (request, response) => {
             }
         }
         ans.std = Mat.sqrt(ans.std / count);
-        response.status(200).json(results)
+        response.status(200).json(results)*/
         //response.status(200).send(`${ans.count}  hola`);
     })
 }
