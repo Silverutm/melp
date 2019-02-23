@@ -102,7 +102,7 @@ const getStatistics = (request, response) => {
             avg:0,
             std:0
         }
-        response.status(200).json(results)
+        response.status(200).json(results.rows)
         //response.status(200).send(`${ans.count}  hola`);
         let rating = 0;
         for (restaurant in results.rows)
