@@ -29,7 +29,7 @@ express()
       res.send("Error " + err);
     }
   })
-
+  .get('/restaurants', async (req, res) => res.send(getRestaurants()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
@@ -44,28 +44,18 @@ showTimes = () => {
     return result;
 }
 
-/*const http = require('http');
-
-//const hostname = '127.0.0.1';
-const port = process.env.PORT || 5000
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+const getRestaurants = (request, response) => {
+    pool.query('SELECT * FROM Restaurants', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
 
 
-*/
-
-
-/*Restaurants(
-id TEXT PRIMARY KEY, rating INTEGER, name TEXT, site TEXT, email TEXT, phone TEXT, street TEXT, city TEXT, state TEXT, lat FLOAT, lng FLOAT)*/
-
+/*create table Restaurants(id TEXT PRIMARY KEY, rating INTEGER, name TEXT, site TEXT, email TEXT, phone TEXT, street TEXT, city TEXT, state TEXT, lat FLOAT, lng FLOAT)*/
+//insert into Restaurants values('851f799f-0852-439e-b9b2-df92c43e7672',1,'Barajas, Bahena and Kano','https://federico.com','Anita_Mata71@hotmail.com','534 814 204','82247 Mariano Entrada','Merida Alfredotown','Durango',19.4400570537131,-99.1270470974249)
 
 
 //create table otra (id TEXT PRIMARY KEY, name text);
