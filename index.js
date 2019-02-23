@@ -10,7 +10,10 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/restaurants', db.getRestaurants )
-  .get('/restaurants/:id', db.getRestaurantsById )
+  .get('/restaurants/:id', db.getRestaurantById )
+  .post('/restaurants', db.createRestaurant)
+  .put('/restaurants/:id', db.updateRestaurant)
+  .delete('/restaurants/:id', db.deleteRestaurant)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
