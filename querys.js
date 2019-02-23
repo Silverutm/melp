@@ -92,7 +92,7 @@ function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
 }*/
 
 const getStatistics = (request, response) => {
-    const { latitude, longitude, radius } = request.body
+    //const { latitude, longitude, radius } = request.body
     pool.query('SELECT * FROM Restaurants', (error, results) => {
         if (error) {
             throw error
