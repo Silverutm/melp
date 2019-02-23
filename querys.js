@@ -28,11 +28,11 @@ const getRestaurantById = (request, response) => {
 
 const createRestaurant = (request, response) => {
     const { id, rating, name, site, email, phone, street, city, state, lat, lng } = request.body
-    const intRating = parseInt(rating)
-    const floatLat = parseFloat(lat)
-    const floatLng = parseFloat(lng)
+    //const intRating = parseInt(rating)
+    //const floatLat = parseFloat(lat)
+    //const floatLng = parseFloat(lng)
     
-    response.status(200).send(`R ${name} ----  ${street}`)
+    response.status(201).send(`R ${name} ----  ${street}`);
 
     pool.query('INSERT INTO Restaurants (id, rating, name, site, email, phone, street, city, state, lat, lng) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [id, intRating, name, site, email, phone, street, city, state, floatLat, floatLng], (error, results) => {
         if (error) {
